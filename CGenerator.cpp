@@ -30,11 +30,19 @@ void CGenerator::step() {
 
 // Requires: valid seed (probably non empty)
 // Modifies: data - replaced with seed
-void CGenerator::seed(std::vector<double>& seed_vec) {
+void CGenerator::seed(std::vector<double> seed_vec) {
     data = seed_vec;
 }
 
 
 int CGenerator::size() {
   return data.size();
+}
+
+double CGenerator::operator[](int idx) {
+    if (idx < 0) {
+        return data[size() + idx];
+    } else {
+        return data[idx];
+    }
 }

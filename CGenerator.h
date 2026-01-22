@@ -15,11 +15,14 @@ class CGenerator : public AGenerator {
 
     void step() override;
     
-    void seed(std::vector<double>&);
+    void seed(std::vector<double>);
 
     int size() override;
+
+    double operator[](int);
 
   private:
     std::vector<double> data;
     std::function<double()> function;
 };
+

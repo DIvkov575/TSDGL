@@ -17,7 +17,7 @@ class Dataset {
       for (std::string& col : columns) {
         out << col << ",";
       }
-      out << "\n" << std::endl;
+      out << "\n";
 
       for (int i = 0; i < len; ++i) {
         for (std::string& col : columns) {
@@ -25,6 +25,15 @@ class Dataset {
         }
         out << "\n";
       }
+    }
+
+    // Requires: run after initialization ... duh
+    void warmup_step(int steps) {
+        for (int i = 0; i < steps; ++i) {
+            for (auto it = mapping.begin(); it != mapping.end(); ++it) {
+                it->second->step();
+            }
+        }
     }
 
   private:
